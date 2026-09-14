@@ -102,7 +102,7 @@ Proof.
   rewrite -[in X in _ = X](R_in_comapK PA a' a aR).
   set t := (R_in_comap PA a' a aR).
   dependent inversion t.
-  rewrite transport_apD10 /=.
+  rewrite transport_apD10@{j j j j} /=.
   rewrite apD10_path_forall_cancel/=.
   rewrite <- (R_in_mapK PB).
   set u := (R_in_map _ _ _ _).
