@@ -66,6 +66,7 @@ parse-goal Goal G Ty _ [] :-
   Goal = goal _Context _ G _ [], !,
   logging.trace (coq.say "[parse-goal] No arguments"),
   std.assert-ok! (coq.typecheck G Ty) "goal ill-typed".
+:name "parse-goal.fail"
 parse-goal Goal _ _ _ _ :- !,
   coq.error "Wrong usage of trocq tactic",
   fail.
