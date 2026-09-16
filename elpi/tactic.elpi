@@ -38,9 +38,14 @@ load-rels GRRels DB :- std.do! [
   std.flatten DBs DB
 ].
 
+% [parse-goal Goal G Ty G' Rels] parses the goal Goal, assigning to G
+% the type we're asked to inhabit, and to Ty the type of G. If a
+% target term is specified with the "to" keyword, it is assigned to
+% G'. Similarly if a list of global references is provided with the
+% "use" keyword, those are stored in Rels.
 pred parse-goal i:goal, o:term, o: term, o:term, o:list gref.
 parse-goal Goal _ _ _ _ :- logging.info (coq.say "[solve] trying to solve goal" Goal), fail.
-% trocq to G with A B C.
+% trocq to G with A B C.
 parse-goal Goal G Ty G' Rels :-
   Goal = goal _Context _ G _ [(str "to"),RG',(str "with")|RRels], !,
   std.assert-ok! (coq.typecheck G Ty) "goal ill-typed",
@@ -99,8 +104,8 @@ translate-goal DB Ty G C G' GR' :- DB => std.do! [
   cstr.local-db DB,
   (cstr.reduce-graph; trocq.error "Could not solve constraint Graph"),
   logging.debug (coq.say "[translate-goal] Beta-reducing proof" GR),
-  %TODO make β-reduction directly in weaken predicate (Issue #63)
+  %TODO make β-reduction directly in weaken predicate (Issue #63)
   coq.reduction.lazy.bi-norm GR GR',
-  logging.debug (coq.say "[transalte-goal] After reductions: goal" {coq.term->string G'} "with proof" {coq.term->string GR'}),
+  logging.debug (coq.say "[translate-goal] After reductions: goal" {coq.term->string G'} "with proof" {coq.term->string GR'}),
 ].
 
