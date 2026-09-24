@@ -45,7 +45,7 @@ jobs:
     - id: stepGetDerivation
       name: Getting derivation for current job (coq)
       run: "NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link \\\n   --argstr bundle
-        \"rocq-9.1\" --argstr job \"coq\" \\\n   --dry-run 2> err > out || (touch
+        \"rocq-9.2\" --argstr job \"coq\" \\\n   --dry-run 2> err > out || (touch
         fail; true)\ncat out err\nif [ -e fail ]; then echo \"Error: getting derivation
         failed\"; exit 1; fi\n"
     - id: stepCheck
@@ -58,11 +58,11 @@ jobs:
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: 'Building/fetching previous CI target: rocq-core'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "rocq-core"
+        "rocq-9.2" --argstr job "rocq-core"
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: Building/fetching current CI target
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "coq"
+        "rocq-9.2" --argstr job "coq"
   coq-elpi:
     needs:
     - rocq-core
@@ -106,7 +106,7 @@ jobs:
     - id: stepGetDerivation
       name: Getting derivation for current job (coq-elpi)
       run: "NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link \\\n   --argstr bundle
-        \"rocq-9.1\" --argstr job \"coq-elpi\" \\\n   --dry-run 2> err > out || (touch
+        \"rocq-9.2\" --argstr job \"coq-elpi\" \\\n   --dry-run 2> err > out || (touch
         fail; true)\ncat out err\nif [ -e fail ]; then echo \"Error: getting derivation
         failed\"; exit 1; fi\n"
     - id: stepCheck
@@ -119,11 +119,11 @@ jobs:
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: 'Building/fetching previous CI target: rocq-core'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "rocq-core"
+        "rocq-9.2" --argstr job "rocq-core"
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: Building/fetching current CI target
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "coq-elpi"
+        "rocq-9.2" --argstr job "coq-elpi"
   rocq-core:
     needs: []
     runs-on: ubuntu-latest
@@ -166,7 +166,7 @@ jobs:
     - id: stepGetDerivation
       name: Getting derivation for current job (rocq-core)
       run: "NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link \\\n   --argstr bundle
-        \"rocq-9.1\" --argstr job \"rocq-core\" \\\n   --dry-run 2> err > out || (touch
+        \"rocq-9.2\" --argstr job \"rocq-core\" \\\n   --dry-run 2> err > out || (touch
         fail; true)\ncat out err\nif [ -e fail ]; then echo \"Error: getting derivation
         failed\"; exit 1; fi\n"
     - id: stepCheck
@@ -179,7 +179,7 @@ jobs:
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: Building/fetching current CI target
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "rocq-core"
+        "rocq-9.2" --argstr job "rocq-core"
   rocq-elpi:
     needs: []
     runs-on: ubuntu-latest
@@ -222,7 +222,7 @@ jobs:
     - id: stepGetDerivation
       name: Getting derivation for current job (rocq-elpi)
       run: "NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link \\\n   --argstr bundle
-        \"rocq-9.1\" --argstr job \"rocq-elpi\" \\\n   --dry-run 2> err > out || (touch
+        \"rocq-9.2\" --argstr job \"rocq-elpi\" \\\n   --dry-run 2> err > out || (touch
         fail; true)\ncat out err\nif [ -e fail ]; then echo \"Error: getting derivation
         failed\"; exit 1; fi\n"
     - id: stepCheck
@@ -235,7 +235,7 @@ jobs:
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: Building/fetching current CI target
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "rocq-elpi"
+        "rocq-9.2" --argstr job "rocq-elpi"
   trocq:
     needs:
     - trocq-std
@@ -280,7 +280,7 @@ jobs:
     - id: stepGetDerivation
       name: Getting derivation for current job (trocq)
       run: "NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link \\\n   --argstr bundle
-        \"rocq-9.1\" --argstr job \"trocq\" \\\n   --dry-run 2> err > out || (touch
+        \"rocq-9.2\" --argstr job \"trocq\" \\\n   --dry-run 2> err > out || (touch
         fail; true)\ncat out err\nif [ -e fail ]; then echo \"Error: getting derivation
         failed\"; exit 1; fi\n"
     - id: stepCheck
@@ -293,15 +293,15 @@ jobs:
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: 'Building/fetching previous CI target: trocq-std'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "trocq-std"
+        "rocq-9.2" --argstr job "trocq-std"
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: 'Building/fetching previous CI target: trocq-hott'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "trocq-hott"
+        "rocq-9.2" --argstr job "trocq-hott"
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: Building/fetching current CI target
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "trocq"
+        "rocq-9.2" --argstr job "trocq"
   trocq-hott:
     needs:
     - coq
@@ -346,7 +346,7 @@ jobs:
     - id: stepGetDerivation
       name: Getting derivation for current job (trocq-hott)
       run: "NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link \\\n   --argstr bundle
-        \"rocq-9.1\" --argstr job \"trocq-hott\" \\\n   --dry-run 2> err > out ||
+        \"rocq-9.2\" --argstr job \"trocq-hott\" \\\n   --dry-run 2> err > out ||
         (touch fail; true)\ncat out err\nif [ -e fail ]; then echo \"Error: getting
         derivation failed\"; exit 1; fi\n"
     - id: stepCheck
@@ -359,19 +359,19 @@ jobs:
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: 'Building/fetching previous CI target: coq'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "coq"
+        "rocq-9.2" --argstr job "coq"
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: 'Building/fetching previous CI target: coq-elpi'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "coq-elpi"
+        "rocq-9.2" --argstr job "coq-elpi"
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: 'Building/fetching previous CI target: HoTT'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "HoTT"
+        "rocq-9.2" --argstr job "HoTT"
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: Building/fetching current CI target
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "trocq-hott"
+        "rocq-9.2" --argstr job "trocq-hott"
   trocq-hott-examples:
     needs:
     - coq
@@ -416,7 +416,7 @@ jobs:
     - id: stepGetDerivation
       name: Getting derivation for current job (trocq-hott-examples)
       run: "NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link \\\n   --argstr bundle
-        \"rocq-9.1\" --argstr job \"trocq-hott-examples\" \\\n   --dry-run 2> err
+        \"rocq-9.2\" --argstr job \"trocq-hott-examples\" \\\n   --dry-run 2> err
         > out || (touch fail; true)\ncat out err\nif [ -e fail ]; then echo \"Error:
         getting derivation failed\"; exit 1; fi\n"
     - id: stepCheck
@@ -429,23 +429,23 @@ jobs:
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: 'Building/fetching previous CI target: coq'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "coq"
+        "rocq-9.2" --argstr job "coq"
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: 'Building/fetching previous CI target: trocq-hott'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "trocq-hott"
+        "rocq-9.2" --argstr job "trocq-hott"
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: 'Building/fetching previous CI target: mathcomp-ssreflect'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "mathcomp-ssreflect"
+        "rocq-9.2" --argstr job "mathcomp-ssreflect"
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: 'Building/fetching previous CI target: mathcomp-algebra'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "mathcomp-algebra"
+        "rocq-9.2" --argstr job "mathcomp-algebra"
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: Building/fetching current CI target
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "trocq-hott-examples"
+        "rocq-9.2" --argstr job "trocq-hott-examples"
   trocq-std:
     needs:
     - coq
@@ -490,7 +490,7 @@ jobs:
     - id: stepGetDerivation
       name: Getting derivation for current job (trocq-std)
       run: "NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link \\\n   --argstr bundle
-        \"rocq-9.1\" --argstr job \"trocq-std\" \\\n   --dry-run 2> err > out || (touch
+        \"rocq-9.2\" --argstr job \"trocq-std\" \\\n   --dry-run 2> err > out || (touch
         fail; true)\ncat out err\nif [ -e fail ]; then echo \"Error: getting derivation
         failed\"; exit 1; fi\n"
     - id: stepCheck
@@ -503,15 +503,15 @@ jobs:
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: 'Building/fetching previous CI target: coq'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "coq"
+        "rocq-9.2" --argstr job "coq"
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: 'Building/fetching previous CI target: coq-elpi'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "coq-elpi"
+        "rocq-9.2" --argstr job "coq-elpi"
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: Building/fetching current CI target
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "trocq-std"
+        "rocq-9.2" --argstr job "trocq-std"
   trocq-std-examples:
     needs:
     - coq
@@ -556,7 +556,7 @@ jobs:
     - id: stepGetDerivation
       name: Getting derivation for current job (trocq-std-examples)
       run: "NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link \\\n   --argstr bundle
-        \"rocq-9.1\" --argstr job \"trocq-std-examples\" \\\n   --dry-run 2> err >
+        \"rocq-9.2\" --argstr job \"trocq-std-examples\" \\\n   --dry-run 2> err >
         out || (touch fail; true)\ncat out err\nif [ -e fail ]; then echo \"Error:
         getting derivation failed\"; exit 1; fi\n"
     - id: stepCheck
@@ -569,27 +569,27 @@ jobs:
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: 'Building/fetching previous CI target: coq'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "coq"
+        "rocq-9.2" --argstr job "coq"
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: 'Building/fetching previous CI target: trocq-std'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "trocq-std"
+        "rocq-9.2" --argstr job "trocq-std"
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: 'Building/fetching previous CI target: mathcomp-algebra'
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "mathcomp-algebra"
+        "rocq-9.2" --argstr job "mathcomp-algebra"
     - if: steps.stepCheck.outputs.status != 'fetched'
       name: Building/fetching current CI target
       run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle 
-        "rocq-9.1" --argstr job "trocq-std-examples"
-name: Nix CI for bundle rocq-9.1
+        "rocq-9.2" --argstr job "trocq-std-examples"
+name: Nix CI for bundle rocq-9.2
 on:
   pull_request:
     paths:
-    - .github/workflows/nix-action-rocq-9.1.yml
+    - .github/workflows/nix-action-rocq-9.2.yml
   pull_request_target:
     paths-ignore:
-    - .github/workflows/nix-action-rocq-9.1.yml
+    - .github/workflows/nix-action-rocq-9.2.yml
     types:
     - opened
     - synchronize
